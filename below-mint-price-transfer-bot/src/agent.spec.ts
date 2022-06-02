@@ -49,13 +49,10 @@ describe("Ether Royale NFT transfer agent", () => {
 
             expect(findings).toStrictEqual([]);
             expect(mockTxEvent.filterLog).toHaveBeenCalledTimes(1);
-            expect(mockTxEvent.filterLog).toHaveBeenCalledWith(
-            ERC721_TRANSFER_EVENT,
-            ETHER_ROYALE_ADDRESS
-            );
+            expect(mockTxEvent.filterLog).toHaveBeenCalledWith(ERC721_TRANSFER_EVENT, ETHER_ROYALE_ADDRESS);
         });
 
-        it("returns a finding if there is a NFT transfer w/ ether value less than mint", async () => {
+        it("returns a finding if there is a NFT transfer w/ ether value less than mint price", async () => {
             let transaction: { value: string } = {value: "0x0"};
             const mockTxEvent = createTransactionEvent({transaction} as any);
             const mockEtherRoyaleTransferEvent = {

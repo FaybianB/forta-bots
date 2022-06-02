@@ -1,26 +1,36 @@
-# Large Tether Transfer Agent
+# Ether Royale Mint Price Detection Agent
 
 ## Description
 
-This agent detects transactions with large Tether transfers
+This agent fires an alert if it detects a mint transaction with an ether value less than the
+cost to mint (mint price * number of NFTs minted). For example, given a mint price of 0.069 ether, if
+2 NFTs are minted in the transaction then the amount of ether sent to the contract should be 0.138 ether (excluding
+gas), otherwise, raise an alert.
+
+The inspiration for this bot came from a real-world exploit of the Ether Royale NFT (https://etherroyale.io/)
+project's contract (https://etherscan.io/address/0xd3dbbade0b048e811b8dea2b7b3f71dd5e4dfee8#code) that allowed
+users to mint NFTs for FREE! The problem was that the contract author omitted the custom modifier (`correctPayment`)
+from the custom mint function (`saleMint`) that validated that the correct ether amount was sent to the contract.
 
 ## Supported Chains
 
 - Ethereum
-- List any other chains this agent can support e.g. BSC
 
 ## Alerts
 
-Describe each of the type of alerts fired by this agent
+This agent only fires a single alert per transaction.
 
 - FORTA-1
-  - Fired when a transaction contains a Tether transfer over 10,000 USDT
-  - Severity is always set to "low" (mention any conditions where it could be something else)
-  - Type is always set to "info" (mention any conditions where it could be something else)
-  - Mention any other type of metadata fields included with this alert
+  - Severity is always set to "High"
+  - Type is always set to "Suspicious"
+  - "addresses" contains the list of addresses that received a transfer from address zero in
+  the transaction.
 
 ## Test Data
 
 The agent behaviour can be verified with the following transactions:
 
-- 0x3a0f757030beec55c22cbc545dd8a844cbbb2e6019461769e1bc3f3a95d10826 (15,000 USDT)
+- 0x936c7ebc91101157e5b61b410643020ead62e1d887d80220e8a7e1ffbadb79a2 (1 Ether Royale NFT minted
+for mint price - 0.069 ether)
+- 0xd47a75d602f429aefa990ddf81b59b91763875ad8fda590c72157b6a04726574 (10 Ether Royale NFTs minted
+for below mint price - 0 ether)
