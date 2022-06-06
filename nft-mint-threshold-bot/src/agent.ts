@@ -35,8 +35,7 @@ const handleTransaction: HandleTransaction = async (txEvent: TransactionEvent) =
                         addresses: [to],
                     })
                 );
-            }
-            if (normalizedTokenId === Math.floor(OPEN_HEAD_MAX_SUPPLY * .5) ) {
+            } else if (normalizedTokenId === Math.floor(OPEN_HEAD_MAX_SUPPLY * .5) ) {
                 findings.push(
                     Finding.fromObject({
                         name: "Open Head Mint Threshold Agent",
@@ -47,8 +46,7 @@ const handleTransaction: HandleTransaction = async (txEvent: TransactionEvent) =
                         addresses: [to],
                     })
                 );
-            }
-            if (normalizedTokenId === Math.floor(OPEN_HEAD_MAX_SUPPLY * .75) ) {
+            } else if (normalizedTokenId === Math.floor(OPEN_HEAD_MAX_SUPPLY * .75) ) {
                 findings.push(
                     Finding.fromObject({
                         name: "Open Head Mint Threshold Agent",
@@ -59,8 +57,7 @@ const handleTransaction: HandleTransaction = async (txEvent: TransactionEvent) =
                         addresses: [to],
                     })
                 );
-            }
-            if (normalizedTokenId === OPEN_HEAD_MAX_SUPPLY) {
+            } else if (normalizedTokenId === OPEN_HEAD_MAX_SUPPLY) {
                 findings.push(
                     Finding.fromObject({
                         name: "Open Head Mint Threshold Agent",
