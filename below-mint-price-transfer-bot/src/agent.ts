@@ -42,7 +42,7 @@ const handleTransaction: HandleTransaction = async (txEvent: TransactionEvent) =
         return [
             Finding.fromObject({
                 name: "Ether Royale NFT Mint Price Agent",
-                description: `An Ether Royale NFT was minted for less than mint price`,
+                description: "An Ether Royale NFT was minted for less than mint price",
                 alertId: "FORTA-1",
                 severity: FindingSeverity.High,
                 type: FindingType.Suspicious,

@@ -68,7 +68,7 @@ describe("Ether Royale NFT transfer agent", () => {
             expect(findings).toStrictEqual([
                 Finding.fromObject({
                 name: "Ether Royale NFT Mint Price Agent",
-                description: `An Ether Royale NFT was minted for less than mint price`,
+                description: "An Ether Royale NFT was minted for less than mint price",
                 alertId: "FORTA-1",
                 severity: FindingSeverity.High,
                 type: FindingType.Suspicious,
